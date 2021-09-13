@@ -1,51 +1,54 @@
 package com.github.webpage_statistician.domain;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
 import com.github.webpage_statistician.dao.StatAppWriter;
+import com.github.webpage_statistician.dao.entity.Word;
+import com.github.webpage_statistician.ui.StatAppPrinter;
 
 @Controller
 public class StatisticianController implements CommandLineRunner {
 
-    private static String fileName = "webtext.txt";
-    private static Map<String, Integer> countedWords;
+    private static final String FILE_NAME = "webtext.txt";
+    private List<Word> countedWords;
     @Autowired
-    private static StatAppReader reader;
+    private StatAppReader reader;
     @Autowired
-    private static StatAppWriter writer;
+    private StatAppWriter writer;
     @Autowired
-    private static Statistician stat;
-
-    public StatisticianController(StatAppReader reader, StatAppWriter writer, Statistician stat) {
-        StatisticianController.reader = reader;
-        StatisticianController.writer = writer;
-        StatisticianController.stat = stat;
-    }
+    private Statistician stat;
+    @Autowired
+    private WordService wordService;
+    @Autowired
+    private StatAppPrinter printer;
 
     @Override
-    public void run(String... args) throws Exception {
-        main(args);
-    }
-
-    public static void main(String[] args) {
+    public void run(String... args) {
         final String URI = args[0];
         String text = null;
         try {
             text = reader.readText(URI);
-            writer.write(text, fileName);
-            countedWords = stat.getStatistics(fileName);
         } catch (IOException e) {
-            System.out.println("Can't read/write file " + fileName);
-            e.printStackTrace();
+            System.out.println("Can't read text from website " + URI + ".");
+            System.exit(1);
         } catch (InterruptedException e) {
-            System.out.println("Can't read text from website " + URI);
-            e.printStackTrace();
+            System.out.println("Can't read text from website " + URI + ".");
             Thread.currentThread().interrupt();
+            System.exit(1);
         }
+        try {
+            writer.write(text, FILE_NAME);
+            countedWords = stat.getStatistics(FILE_NAME);
+        } catch (IOException e) {
+            System.out.println("Can't read/write file " + FILE_NAME + ".");
+            System.exit(1);
+        }
+        wordService.saveAllWords(countedWords);
+        printer.print(wordService.getAllWords());
     }
 }

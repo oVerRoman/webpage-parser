@@ -49,6 +49,7 @@ HELP.md
 ## Project restrictions
 .mvn
 webtext.txt
+log.txt
 
 # STS
 .apt_generated

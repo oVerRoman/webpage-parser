@@ -1,6 +1,7 @@
 package com.github.webpage_statistician.domain;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,17 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.webpage_statistician.dao.DAOFileReader;
+import com.github.webpage_statistician.dao.entity.Word;
 
 @Component
 public class StatisticianImpl implements Statistician {
 
     Map<String, Integer> wordsMap = new HashMap<>();
     List<String> wordsList;
+    List<Word> countedWordsList;
     @Autowired
     TextParser parser;
 
     @Override
-    public Map<String, Integer> getStatistics(String fileName) throws IOException {
+    public List<Word> getStatistics(String fileName) throws IOException {
         wordsList = parser.parse(new DAOFileReader().readText(fileName));
         for (String word : wordsList) {
             if (wordsMap.containsKey(word)) {
@@ -29,9 +32,10 @@ public class StatisticianImpl implements Statistician {
                 wordsMap.put(word, 1);
             }
         }
+        countedWordsList = new ArrayList<>();
         for (Entry<String, Integer> word : wordsMap.entrySet()) {
-            System.out.println("[word: " + word.getKey() + ", value: " + word.getValue() + "]");
+            countedWordsList.add(new Word(word.getKey(), word.getValue()));
         }
-        return wordsMap;
+        return countedWordsList;
     }
 }
