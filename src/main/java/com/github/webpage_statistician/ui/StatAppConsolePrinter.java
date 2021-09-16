@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.github.webpage_statistician.dao.entity.Word;
 
 @Component
-public class StstAppConsolePrinter implements StatAppPrinter {
+public class StatAppConsolePrinter implements StatAppPrinter {
 
     @Override
     public void print(List<Word> wordsList) {

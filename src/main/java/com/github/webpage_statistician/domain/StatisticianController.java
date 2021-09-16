@@ -29,26 +29,76 @@ public class StatisticianController implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        if (args.length != 1) {
+            System.out.println("Input website URL with protocol.");
+            System.out.println("For example: https://www.google.com.");
+            return;
+        }
         final String URI = args[0];
         String text = null;
         try {
             text = reader.readText(URI);
         } catch (IOException e) {
             System.out.println("Can't read text from website " + URI + ".");
-            System.exit(1);
+            return;
         } catch (InterruptedException e) {
             System.out.println("Can't read text from website " + URI + ".");
             Thread.currentThread().interrupt();
-            System.exit(1);
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Can't read text from website " + URI + ".");
+            System.out.println("Input website URL with protocol.");
+            System.out.println("For example: https://www.google.com.");
+            return;
         }
         try {
             writer.write(text, FILE_NAME);
             countedWords = stat.getStatistics(FILE_NAME);
         } catch (IOException e) {
             System.out.println("Can't read/write file " + FILE_NAME + ".");
-            System.exit(1);
+            return;
         }
         wordService.saveAllWords(countedWords);
         printer.print(wordService.getAllWords());
+    }
+
+    public StatAppReader getReader() {
+        return reader;
+    }
+
+    public void setReader(StatAppReader reader) {
+        this.reader = reader;
+    }
+
+    public StatAppWriter getWriter() {
+        return writer;
+    }
+
+    public void setWriter(StatAppWriter writer) {
+        this.writer = writer;
+    }
+
+    public Statistician getStatistician() {
+        return stat;
+    }
+
+    public void setStatistician(Statistician stat) {
+        this.stat = stat;
+    }
+
+    public WordService getWordService() {
+        return wordService;
+    }
+
+    public void setWordService(WordService wordService) {
+        this.wordService = wordService;
+    }
+
+    public StatAppPrinter getPrinter() {
+        return printer;
+    }
+
+    public void setPrinter(StatAppPrinter printer) {
+        this.printer = printer;
     }
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <title>Test title.</title>
+    <style some style>Style for website.</style>
+    <script data-skip-moving="true" async>(function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });</script>
+<link rel="preconnect" href="//www.google-analytics.com/">
+</head>
+<body id="js-page-body" data-pref="" data-page="1"
+      class="ru">
+<div class="main-wrapper">
+        <header class="header  header--hidecalc">
+        <div class="header-nav">
+            <div class="header-nav__wrapper">
+                <a title="Test" class="header-nav__logo">
+                    <div class="header-nav__logo-text">Logo text</div>
+                </a>
+<ul class="header-nav__list">
+	<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="header-nav__item ">
+          <span itemprop="title" class="header-nav__link header-nav__link--icon">
+            Text from span</span>
+		<ul class="header-nav__dropdown">
+    <li>
+        <svg class="header-nav__close header-nav-open" width="20px" height="20px" viewBox="0 0 20 20" >
+            <g transform="translate(-361.000000, -140.000000)" fill="#4B5B50">
+                        <path d="M230.52879,30 L239.890376,20.6384146 C240.036541,20.492249 240.036541,20.2557899 239.890376,20.1096242 C239.74421,19.9634586 239.507252,19.9634586 239.361087,20.1096242 239.817044,39.9632092 239.890376,39.8898769 C240.036541,39.7437113 240.036541,39.5072522 239.890376,39.3610865 L230.52879,30" id="idnum"></path>
+            </g>
+        </svg>
+    </li>
+</ul>
+<div class="block">
+    <h4 class="block-title">
+        Examples<span class="icon-arrow"></span>
+    </h4>
+    <ul class="menu">
+                    <li itemscope itemtype="http://data.org" class="menu-item">
+                <a href="/examples/dash/" itemprop="url" class="menu-link">
+                    Sentence with
+- dash in new line.                </a>
+            </li>
+                    <li itemscope itemtype="http://data.org" class="menu-item">
+                <a href="/examples/whitespaces-and-tabs/" itemprop="url" class="menu-link">
+                    Sentence		with      &#160;whitespaces  and		tabs	&nbsp; . </a>
+            </li>
+                    <li itemscope itemtype="http://data.org" class="menu-item">
+                <a href="/examples/punctuation-marks/" itemprop="url" class="menu-link">
+                    Sentence! with:; punctuation,,, marks? </a>
+            </li>
+                    <li itemscope itemtype="http://data.org" class="menu-item">
+                <a href="/examples/quotes/" itemprop="url" class="menu-link">
+                    'Some' "quotes" «in» “sentence”.               </a>
+            </li>
+                    <li itemscope itemtype="http://data.org" class="menu-item">
+                <a href="/examples/brackets/" itemprop="url" class="menu-link">
+                    ((Couple)) ( brackets ) [in] {sentence}.                </a>
+            </li>
+                    <li itemscope itemtype="http://data.org" class="menu-item">
+                <a href="/examples/hyphen/" itemprop="url" class="menu-link">
+                    word-with-hyphen 8-800-555-55-55 </a>
+            </ul>
+<script src="/local/templates/.default/js/dist/reject.min.js"></script>
+</body>
+</html>

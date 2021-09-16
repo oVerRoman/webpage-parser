@@ -15,7 +15,7 @@ public class LoggingExceptionsAspect {
     private static final Logger LOG = LoggerFactory.getLogger(LoggingExceptionsAspect.class);
 
     @AfterThrowing(pointcut = "execution(* com.github.webpage_statistician.*.*.*(..))", throwing = "exception")
-    public void after1RunStatisticianControllerExceptionThrowingAdvice(JoinPoint joinPoint, Throwable exception) {
+    public void afterRunStatisticianControllerExceptionThrowingAdvice(JoinPoint joinPoint, Throwable exception) {
         LOG.error("Method \"" + ((MethodSignature) joinPoint.getSignature()).getMethod() + "\" throws exception: "
                 + exception + ".");
     }

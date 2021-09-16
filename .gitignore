@@ -50,6 +50,8 @@ HELP.md
 .mvn
 webtext.txt
 log.txt
+testwritingwebtext.txt
+testlog.txt
 
 # STS
 .apt_generated
@@ -74,6 +76,7 @@ log.txt
 *.zip
 *.tar.gz
 *.rar
+*.gz
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*

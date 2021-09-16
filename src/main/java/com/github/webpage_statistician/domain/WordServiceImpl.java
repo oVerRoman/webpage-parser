@@ -21,4 +21,12 @@ public class WordServiceImpl implements WordService {
     public List<Word> getAllWords() {
         return wordRepository.findAll();
     }
+
+    public WordRepository getWordRepository() {
+        return wordRepository;
+    }
+
+    public void setWordRepository(WordRepository wordRepository) {
+        this.wordRepository = wordRepository;
+    }
 }

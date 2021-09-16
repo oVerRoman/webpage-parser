@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.webpage_statistician.dao.DAOFileReader;
+import com.github.webpage_statistician.dao.DAOReader;
 import com.github.webpage_statistician.dao.entity.Word;
 
 @Component
@@ -21,10 +21,12 @@ public class StatisticianImpl implements Statistician {
     List<Word> countedWordsList;
     @Autowired
     TextParser parser;
+    @Autowired
+    DAOReader reader;
 
     @Override
     public List<Word> getStatistics(String fileName) throws IOException {
-        wordsList = parser.parse(new DAOFileReader().readText(fileName));
+        wordsList = parser.parse(reader.readText(fileName));
         for (String word : wordsList) {
             if (wordsMap.containsKey(word)) {
                 wordsMap.put(word, wordsMap.get(word) + 1);
@@ -37,5 +39,21 @@ public class StatisticianImpl implements Statistician {
             countedWordsList.add(new Word(word.getKey(), word.getValue()));
         }
         return countedWordsList;
+    }
+
+    public TextParser getParser() {
+        return parser;
+    }
+
+    public void setParser(TextParser parser) {
+        this.parser = parser;
+    }
+
+    public DAOReader getReader() {
+        return reader;
+    }
+
+    public void setReader(DAOReader reader) {
+        this.reader = reader;
     }
 }
